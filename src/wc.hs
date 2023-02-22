@@ -13,8 +13,8 @@ data Flag
     = Version
     | CountBytes
     | CountLines
-    | CountCharacters
     | CountWords
+    | CountCharacters
     deriving (Show, Eq)
 
 trim :: String -> String
@@ -55,8 +55,8 @@ countBytes = BS.length . UTF8.fromString
 countLines :: String -> Int
 countLines = length.lines
 
-countCharacters :: String -> Int
-countCharacters = length
+-- countCharacters :: String -> Int
+-- countCharacters = length
 
 countWords :: String -> Int
 countWords = length.words
