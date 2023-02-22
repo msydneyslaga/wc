@@ -66,16 +66,20 @@ wc fp = do
     content <- hGetContents fp
     return (countLines content, countWords content, countBytes content)
 
+wcString :: (Int, Int, Int) -> Maybe String -> String
+wcString (l,w,b) path = printf "%8d %7d %7d%s" l w b pathIfFile
+    where pathIfFile = fromMaybe "" ((' ':) <$> path)
+
 printWc :: FilePath -> IO ()
 printWc path = withFile path ReadMode (\fp ->
-        wc fp >>= (\(l,w,b) -> putStrLn $ printf "%8d %7d %7d %s" l w b path))
+        wc fp >>= (\counts -> putStrLn $ wcString counts $ Just path))
 
 main :: IO ()
 main = do
     (opts, files) <- (getArgs >>= wcOpts)
 
     if null files then
-        printWc
+        wc stdin >>= \counts -> putStrLn $ wcString counts Nothing
     else
         forM_ files printWc
 
