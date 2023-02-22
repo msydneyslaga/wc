@@ -15,7 +15,7 @@ data Flag
     | CountLines
     | CountCharacters
     | CountWords
-    deriving (Show)
+    deriving (Show, Eq)
 
 trim :: String -> String
 trim = (unwords.words)
@@ -66,21 +66,36 @@ wc fp = do
     content <- hGetContents fp
     return (countLines content, countWords content, countBytes content)
 
-wcString :: (Int, Int, Int) -> Maybe String -> String
-wcString (l,w,b) path = printf "%8d %7d %7d%s" l w b pathIfFile
-    where pathIfFile = fromMaybe "" ((' ':) <$> path)
+lineCountf :: Int -> String
+lineCountf = printf "%8d "
 
-printWc :: FilePath -> IO ()
-printWc path = withFile path ReadMode (\fp ->
-        wc fp >>= (\counts -> putStrLn $ wcString counts $ Just path))
+wordCountf :: Int -> String
+wordCountf = printf "%7d "
+
+byteCountf :: Int -> String
+byteCountf = printf "%7d "
+
+wcString :: [Flag] -> (Int, Int, Int) -> Maybe String -> String
+wcString flags (l,w,b) path = printf "%s%s%s%s" lc wc bc pathIfFile
+    where lc = if null flags || CountLines `elem` flags then lineCountf l else ""
+          wc = if null flags || CountWords `elem` flags then wordCountf w else ""
+          bc = if null flags || CountBytes `elem` flags then byteCountf b else ""
+          -- pathIfFile = fromMaybe "" ((' ':) <$> path)
+          pathIfFile = fromMaybe "" path
+
+printWc :: [Flag] -> FilePath -> IO ()
+printWc flags path = withFile path ReadMode (\fp ->
+        wc fp >>= (\counts -> putStrLn $ wcString flags counts $ Just path))
 
 main :: IO ()
 main = do
-    (opts, files) <- (getArgs >>= wcOpts)
+    (flags, files) <- (getArgs >>= wcOpts)
+
+    print flags
 
     if null files then
-        wc stdin >>= \counts -> putStrLn $ wcString counts Nothing
+        wc stdin >>= \counts -> putStrLn $ wcString flags counts Nothing
     else
-        forM_ files printWc
+        forM_ files (printWc flags)
 
 
