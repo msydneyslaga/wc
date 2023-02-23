@@ -1,0 +1,59 @@
+\documentclass[12pt]{article}
+\usepackage{graphicx} % Required for inserting images
+\usepackage{listings}
+\usepackage{fontspec}
+\usepackage[dvipsnames]{xcolor}
+\usepackage[outputdir=build]{minted}
+\usepackage[fontsize=16pt]{fontsize}
+
+\setmonofont{VictorMonoNF}
+[ Extension = .ttf
+, UprightFont = res/*-Regular
+, ItalicFont = res/*-Italic
+, BoldFont = res/*-SemiBold
+]
+
+\lstset{
+  frame=none,
+  xleftmargin=2pt,
+  stepnumber=1,
+  numbers=left,
+  numbersep=5pt,
+  numberstyle=\ttfamily\tiny,
+  belowcaptionskip=\bigskipamount,
+  captionpos=b,
+  escapeinside={*'}{'*},
+  language=haskell,
+  tabsize=2,
+  emphstyle={\victor\bf},
+  commentstyle=\it,
+  stringstyle=\victor\it\color{Green},
+  showspaces=false,
+  keywordstyle=\victor\bf,
+  columns=flexible,
+  basicstyle=\sffamily\victor,
+  showstringspaces=false,
+  morecomment=[l]\%,
+  literate={->}{{$\rightarrow$ }}1,
+}
+
+
+\title{test}
+\author{crumb }
+\date{February 2023}
+
+\begin{document}
+
+\maketitle
+comment comment
+\begin{minted}[fontsize=\small]{haskell}
+fib :: Integer -> Integer
+fib n = fibs !! n
+    where fibs = 0 : 1 : zipWith (+) fibs (tail fibs)
+
+main :: IO ()
+main = do putStrLn "hi"
+\end{minted}
+
+\end{document}
+

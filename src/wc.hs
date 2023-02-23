@@ -1,11 +1,18 @@
 module Main where
 
+-- File IO
 import System.IO
+
+-- Required for handling command-line arguments
 import System.Environment (getArgs)
 import System.Console.GetOpt
+
+-- Very convenient functions
 import Data.Maybe (fromMaybe)
-import Control.Monad
-import Text.Printf
+import Control.Monad (forM_)
+import Text.Printf (printf)
+
+-- Import qualified because of conflicting identifiers
 import qualified Data.ByteString as BS (length)
 import qualified Data.ByteString.UTF8 as UTF8 (fromString)
 
@@ -16,9 +23,6 @@ data Flag
     | CountWords
     | CountCharacters
     deriving (Show, Eq)
-
-trim :: String -> String
-trim = (unwords.words)
 
 options :: [OptDescr Flag]
 options =
