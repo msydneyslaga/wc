@@ -4,56 +4,82 @@
 \usepackage{fontspec}
 \usepackage[dvipsnames]{xcolor}
 \usepackage[outputdir=build]{minted}
+% \usepackage{minted}
 \usepackage[fontsize=16pt]{fontsize}
+
+\usepackage{geometry}
+\geometry{legalpaper, portrait, margin=2cm}
+
+\usemintedstyle{emacs}
 
 \setmonofont{VictorMonoNF}
 [ Extension = .ttf
 , UprightFont = res/*-Regular
 , ItalicFont = res/*-Italic
 , BoldFont = res/*-SemiBold
+, SwashFont = res/*-SemiBold
 ]
 
-\lstset{
-  frame=none,
-  xleftmargin=2pt,
-  stepnumber=1,
-  numbers=left,
-  numbersep=5pt,
-  numberstyle=\ttfamily\tiny,
-  belowcaptionskip=\bigskipamount,
-  captionpos=b,
-  escapeinside={*'}{'*},
-  language=haskell,
-  tabsize=2,
-  emphstyle={\victor\bf},
-  commentstyle=\it,
-  stringstyle=\victor\it\color{Green},
-  showspaces=false,
-  keywordstyle=\victor\bf,
-  columns=flexible,
-  basicstyle=\sffamily\victor,
-  showstringspaces=false,
-  morecomment=[l]\%,
-  literate={->}{{$\rightarrow$ }}1,
-}
+% \newenvironment{code}
+%     {\begin{minted}[frame=leftline,fontsize=\small]{haskell}}
+%     {\\\\\end{minted}}
+\newenvironment{code}{\VerbatimEnvironment\begin{minted}[frame=leftline,fontsize=\footnotesize]{haskell}}{\end{minted}} 
 
+\definecolor{greybg}{rgb}{0.95,0.95,0.95}
 
-\title{test}
-\author{crumb }
+\title{\vspace{-2.5cm}AP CSP Create Task}
+\author{Madeline Sydney Slaga}
 \date{February 2023}
 
 \begin{document}
 
 \maketitle
 comment comment
-\begin{minted}[fontsize=\small]{haskell}
-fib :: Integer -> Integer
-fib n = fibs !! n
-    where fibs = 0 : 1 : zipWith (+) fibs (tail fibs)
+\begin{code}
+-- File IO
+import System.IO
 
-main :: IO ()
-main = do putStrLn "hi"
-\end{minted}
+-- Command-line argument handling
+import System.Environment (getArgs)
+import System.Console.GetOpt
+
+-- Very convenient functions which reduce verbosity
+import Data.Maybe (fromMaybe)
+import Control.Monad (forM_)
+import Text.Printf (printf)
+
+-- Used for counting bytes, as the `Char` type can contain Unicode
+-- Import qualified because of conflicting identifiers
+import qualified Data.ByteString as BS (length)
+import qualified Data.ByteString.UTF8 as UTF8 (fromString)
+\end{code}
+
+\section{Command-line Options}
+comment
+\begin{code}
+data Flag
+    = Version
+    | CountBytes
+    | CountLines
+    | CountWords
+    | CountCharacters
+    deriving (Show, Eq)
+\end{code}
+
+\begin{code}
+options :: [OptDescr Flag]
+options =
+    [ Option ['V'] ["version"] (NoArg Version)
+        "Display version number"
+    , Option ['c'] [ ] (NoArg CountBytes)
+        "The number of bytes in each file is written to stdout"
+    , Option ['l'] [ ] (NoArg CountLines) 
+        "The number of lines in each file is written to stdout"
+    , Option ['w'] [ ] (NoArg CountWords) 
+        "The number of words in each file is written to stdout"
+    ]
+\end{code}
 
 \end{document}
+
 
