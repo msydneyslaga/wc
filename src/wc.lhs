@@ -122,7 +122,7 @@ wcOpts argv =
             ioError $ userError $ errorMsg errs
 
     where errorMsg e = concat e ++ usageInfo header options
-          header = "Usage: wc [OPTION...] [FILES...]"
+          header = "Usage: wc [-clw] [FILES...]"
 \end{code}
 
 \section{Counting}
@@ -252,6 +252,9 @@ Fuck the Collegeboard. You lot of evil, slimy, cunts.
 \section{Acknowledgements}
 
 \begin{itemize}
+
+    \item My reference implementation, \href{https://www.unix.com/man-page/osx/1/wc/}{\underline{BSD wc(1)}}
+    
     \item \href{https://wiki.haskell.org/Merely_monadic}{\underline{The Haskell Wiki – Merely Monadic}}
 
     \item \href{https://hackage.haskell.org/package/base-4.17.0.0/docs/System-Console-GetOpt.html#g:3}{\underline{Hackage \mono{base} Docs – GetOpt Example}}
