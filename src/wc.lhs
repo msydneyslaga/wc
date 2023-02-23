@@ -239,10 +239,13 @@ main :: IO ()
 main = do
     (flags, files) <- (getArgs >>= wcOpts)
 
-    if null files then
-        wc stdin >>= \counts -> putStrLn $ wcString flags counts Nothing
+    if Version `elem` flags then
+        putStrLn "wc (pseudo-BSD wc, GNU incompatible) 1.0.0-i'm-not-updating-this"
     else
-        forM_ files (printWc flags)
+        if null files then
+            wc stdin >>= \counts -> putStrLn $ wcString flags counts Nothing
+        else
+            forM_ files (printWc flags)
 \end{code}
 
 \section{Conclusion}
