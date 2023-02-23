@@ -30,7 +30,7 @@
 
 \definecolor{greybg}{rgb}{0.95,0.95,0.95}
 
-\title{\vspace{-2.5cm}AP CSP Create Task – Simple wc Implementation}
+\title{\vspace{-2.5cm}AP CSP Create Performance Task – Simple wc Implementation}
 \author{Madeline Sydney Slaga}
 \date{February 2023}
 
