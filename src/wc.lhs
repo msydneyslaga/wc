@@ -3,9 +3,10 @@
 \usepackage{listings}
 \usepackage{fontspec}
 \usepackage[dvipsnames]{xcolor}
-\usepackage[outputdir=build]{minted} % local build */
-% \usepackage{minted} % overleaf build */
+\usepackage[outputdir=build]{minted} % local build
+% \usepackage{minted} % overleaf build
 \usepackage[fontsize=16pt]{fontsize}
+\usepackage{hyperref}
 
 \usepackage{geometry}
 \geometry{legalpaper, portrait, margin=2cm}
@@ -31,7 +32,7 @@
 \definecolor{greybg}{rgb}{0.95,0.95,0.95}
 
 \title{\vspace{-2.5cm}AP CSP Create Performance Task – Simple wc Implementation}
-\author{Madeline Sydney Slaga}
+\author{Madeline ``My Name Stays on my Work'' Slaga}
 \date{February 2023}
 
 \begin{document}
@@ -62,6 +63,8 @@ import qualified Data.ByteString.UTF8 as UTF8 (fromString)
 \section{Command-line Options}
 We abstract all possible options inside a \mln{Flag} data type.
 This ensures a \mln{[Flag]} list can only hold valid options.
+\mln{Flag} Derives \mln{Show}, for ease of debugging, and
+\mln{Eq}, to test for appearances in a list.
 \begin{code}
 data Flag
     = Version
@@ -152,6 +155,7 @@ up the various measures; return the counts.'' In Haskell, the
 contents of \mln{fp} are `bound' to \mln{content} in a
 mathematical sense, and evaluation is only done when absolutely
 required: inside the \mln{countX} functions.
+\footnote{Possible optimisation: we traverse \mln{content} three times, instead of a single pass, counting the three measures in parallel.}
 \begin{code}
 wc :: Handle -> IO (Int, Int, Int)
 wc fp = do
@@ -167,6 +171,8 @@ specific flags are set, they should all be enabled. If specific
 flags {\it{are}} set, enable only those specified. Disabled
 counts are simply returned as empty strings, while enabled ones
 are given as their formatted count, ready for output.
+\footnote{Possible optimisation: we use \mln{elem} three times here. This means we traverse the list three times. This could be replaced with a single-pass and a \mln{case ... of}, but wasn't
+for clarity.}
 \begin{code}
 applyOptions :: [Flag] -> (Int, Int, Int) -> (String, String, String)
 applyOptions flags (l,w,b) =
@@ -202,7 +208,7 @@ wcString flags (l,w,b) path = printf "%s%s%s%s" lf wf bf pathIfFile
 The moment where I finally got to use the elusive \mono{>>=}
 operator in a serious context! Here we open a file with
 \mln{withFile}, read and take count with \mln{wc}, bind the
-result to a lambda, which creates our output string
+result to a lambda expression, which creates our output string
 (\mln{wcString}), and finally prints it to \mono{stdout}
 (\mln{putStrLn}).
 \begin{code}
@@ -233,6 +239,29 @@ main = do
     else
         forM_ files (printWc flags)
 \end{code}
+
+\section{Conclusion}
+
+Fuck the Collegeboard. You lot of evil, slimy, cunts.
+
+\section{Conclusion (For the Rest of You)}
+
+The ego trip ends at your will. Challenge me. Humble me. Hammer
+me into the earth and bury me in the withered layers of my
+hubris.
+
+\section{Acknowledgements}
+
+\begin{itemize}
+    \item \href{https://wiki.haskell.org/Merely_monadic}{The Haskell Wiki – Merely Monadic}
+
+    \item \href{https://hackage.haskell.org/package/base-4.17.0.0/docs/System-Console-GetOpt.html#g:3}{Hackage \mono{base} Docs – GetOpt Example}
+
+    \item \href{https://latex-tutorial.com/tutorials/hyperlinks/}{How to Add Hyperlinks in LaTeX (lol)}
+
+    \item may many gems and jewels be awarded to the developers of NeoVim, Overleaf, XeLaTeX, TeXlive, GHC, GNU Make, and Zathura.
+\end{itemize}
+
 \end{document}
 
 
