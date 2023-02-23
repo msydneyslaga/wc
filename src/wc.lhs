@@ -7,9 +7,14 @@
 % \usepackage{minted} % overleaf build
 \usepackage[fontsize=16pt]{fontsize}
 \usepackage{hyperref}
+\usepackage{draftwatermark}
+
 
 \usepackage{geometry}
 \geometry{legalpaper, portrait, margin=2cm}
+
+\SetWatermarkText{Madeline Sydney Slaga}
+\SetWatermarkScale{0.4}
 
 \usemintedstyle{emacs}
 
