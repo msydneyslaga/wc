@@ -8,8 +8,8 @@ $(BUILD_DIR):
 $(BUILD_DIR)/wc: src/wc.hs
 	ghc -package utf8-string -outputdir $(BUILD_DIR) -dynamic $< -o $@
 
-$(BUILD_DIR)/wc.pdf: src/wc.tex
-	xelatex -shell-escape -output-directory=build src/wc.tex
+$(BUILD_DIR)/wc.pdf: src/wc.lhs
+	xelatex -shell-escape -output-directory=build $<
 
 .PHONY:
 clean:
