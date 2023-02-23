@@ -13,7 +13,7 @@
 \usepackage{geometry}
 \geometry{legalpaper, portrait, margin=2cm}
 
-\SetWatermarkText{Madeline Sydney Slaga}
+\SetWatermarkText{\texttt{Madeline Sydney Slaga}}
 \SetWatermarkScale{0.4}
 
 \usemintedstyle{emacs}
@@ -249,22 +249,18 @@ main = do
 
 Fuck the Collegeboard. You lot of evil, slimy, cunts.
 
-\section{Conclusion (For the Rest of You)}
-
-The ego trip ends at your will. Challenge me. Humble me. Hammer
-me into the earth and bury me in the withered layers of my
-hubris.
-
 \section{Acknowledgements}
 
 \begin{itemize}
-    \item \href{https://wiki.haskell.org/Merely_monadic}{The Haskell Wiki – Merely Monadic}
+    \item \href{https://wiki.haskell.org/Merely_monadic}{\underline{The Haskell Wiki – Merely Monadic}}
 
-    \item \href{https://hackage.haskell.org/package/base-4.17.0.0/docs/System-Console-GetOpt.html#g:3}{Hackage \mono{base} Docs – GetOpt Example}
+    \item \href{https://hackage.haskell.org/package/base-4.17.0.0/docs/System-Console-GetOpt.html#g:3}{\underline{Hackage \mono{base} Docs – GetOpt Example}}
 
-    \item \href{https://latex-tutorial.com/tutorials/hyperlinks/}{How to Add Hyperlinks in LaTeX (lol)}
+    \item \href{https://latex-tutorial.com/tutorials/hyperlinks/}{\underline{How to Add Hyperlinks in LaTeX (lol)}}
 
     \item may many gems and jewels be awarded to the developers of NeoVim, Overleaf, XeLaTeX, TeXlive, GHC, GNU Make, and Zathura.
+
+    \item This document's source code is available \href{https://github.com/msydneyslaga/wc}{\underline{here}}
 \end{itemize}
 
 \end{document}
