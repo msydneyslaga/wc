@@ -61,8 +61,7 @@ import Text.Printf (printf)
 
 -- Used for counting bytes, as the `Char` type can contain Unicode
 -- Import qualified because of conflicting identifiers
-import qualified Data.ByteString as BS (length)
-import qualified Data.ByteString.UTF8 as UTF8 (fromString)
+import qualified Data.ByteString.Char8 as BS (length, pack)
 \end{code}
 
 \section{Command-line Options}
@@ -142,7 +141,7 @@ Again, all we need to do is to take the length of this list
 composition. \mln{h = (f.g)} is equivalent to $h = (f \circ g)$}
 \begin{code}
 countBytes :: String -> Int
-countBytes = (BS.length . UTF8.fromString)
+countBytes = (BS.length . BS.pack)
 
 countLines :: String -> Int
 countLines = length.lines
