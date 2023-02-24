@@ -8,6 +8,7 @@
 \usepackage[fontsize=16pt]{fontsize}
 \usepackage{hyperref}
 \usepackage{draftwatermark}
+\usepackage{metalogo}
 
 
 \usepackage{geometry}
@@ -263,11 +264,11 @@ Fuck the Collegeboard. You lot of evil, slimy, cunts.
 
     \item \href{https://latex-tutorial.com/tutorials/hyperlinks/}{\underline{How to Add Hyperlinks in LaTeX (lol)}}
 
-    \item may many gems and jewels be awarded to the developers of NeoVim, Overleaf, XeLaTeX, TeXlive, GHC, GNU Make, and Zathura.
+	\item The font used for all monospace text in this document, \href{https://rubjo.github.io/victor-mono/}{\underline{Victor Mono}}
+
+    \item may many gems and jewels be awarded to the developers of NeoVim, Overleaf, \XeTeX, \TeX live, GHC, GNU Make, and Zathura.
 
     \item This document's source code is available \href{https://github.com/msydneyslaga/wc}{\underline{here}}
-
-	\item The monospace font used in this document, \href{https://rubjo.github.io/victor-mono/}{\underline{Victor Mono}}
 \end{itemize}
 
 \end{document}
