@@ -266,6 +266,8 @@ Fuck the Collegeboard. You lot of evil, slimy, cunts.
     \item may many gems and jewels be awarded to the developers of NeoVim, Overleaf, XeLaTeX, TeXlive, GHC, GNU Make, and Zathura.
 
     \item This document's source code is available \href{https://github.com/msydneyslaga/wc}{\underline{here}}
+
+	\item The monospace font used in this document, \href{https://rubjo.github.io/victor-mono/}{\underline{Victor Mono}}
 \end{itemize}
 
 \end{document}

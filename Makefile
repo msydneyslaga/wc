@@ -6,7 +6,7 @@ $(BUILD_DIR):
 	mkdir $(BUILD_DIR) || true
 
 $(BUILD_DIR)/wc: src/wc.lhs
-	ghc -package utf8-string -outputdir $(BUILD_DIR) -dynamic $< -o $@
+	ghc -outputdir $(BUILD_DIR) -dynamic $< -o $@
 
 $(BUILD_DIR)/wc.pdf: src/wc.lhs
 	xelatex -shell-escape -output-directory=build $<
@@ -14,3 +14,4 @@ $(BUILD_DIR)/wc.pdf: src/wc.lhs
 .PHONY:
 clean:
 	rm -rf $(BUILD_DIR)
+
