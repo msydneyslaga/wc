@@ -134,7 +134,7 @@ Prelude functions. \mln{lines} breaks a string into a list of
 its lines, and \mln{words} acts similarly, but with words. The
 length of those returned lists are their respective count.
 
-countBytes is slightly more complicated, unpacking the string
+\mln{countBytes} is slightly more complicated, unpacking the string
 into a \mln{ByteString} type, essentially a list of octets.
 Again, all we need to do is to take the length of this list
 (but this time we use the special byte-string length function).
